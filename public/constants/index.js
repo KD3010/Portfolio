@@ -197,6 +197,6 @@ export const projects = [
     name: 'Traworld - E-Commerce Web Application',
     description:
       'Traworld redefines travel booking with its user-friendly interface and seamless experience. Offering intuitive navigation and hassle-free booking, this website caters to all travelers, making vacation planning a delight. Explore and book your dream destinations effortlessly with Traworld.',
-    link: 'http://www.admissionguru.co/',
+    link: 'https://trawworld.com/',
   },
 ];
