@@ -1,25 +1,24 @@
 'use client';
-import { Suspense, useRef, useState } from 'react';
+import { Suspense, useRef as UseRef, useState as UseState } from 'react';
 import emailjs from '@emailjs/browser';
 import { Canvas } from '@react-three/fiber';
 import Fox from '../models/Fox';
 import Loader from '../components/Loader';
-import useAlert from '../hooks/useAlert';
+import UseAlert from '../hooks/useAlert';
 import Alert from '../components/Alert';
 
 const page = () => {
-  const formRef = useRef(null);
+  const formRef = UseRef(null);
+  const [currentAnimation, setCurrentAnimation] = UseState('idle');
+  const { alert, showAlert, hideAlert } = UseAlert();
 
-  const [currentAnimation, setCurrentAnimation] = useState('idle');
-  const { alert, showAlert, hideAlert } = useAlert();
-
-  const [form, setForm] = useState({
+  const [form, setForm] = UseState({
     name: '',
     email: '',
     message: '',
   });
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = UseState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });

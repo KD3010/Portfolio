@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState as UseState } from 'react';
 
-const useAlert = () => {
-  const [alert, setAlert] = useState({
+const UseAlert = () => {
+  const [alert, setAlert] = UseState({
     show: false,
     text: '',
     type: 'danger',
@@ -25,4 +25,4 @@ const useAlert = () => {
   return { alert, showAlert, hideAlert };
 };
 
-export default useAlert;
+export default UseAlert;
