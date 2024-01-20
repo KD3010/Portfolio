@@ -1,4 +1,5 @@
 'use client';
+import { useWindowSize } from '@react-hook/window-size';
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useState } from 'react';
 import Loader from './components/Loader';
@@ -12,13 +13,14 @@ import Image from 'next/image';
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
   const [currentStage, setCurrentStage] = useState(1);
+  const { innerWidth } = useWindowSize();
 
   const adjustIslandForScreenSize = () => {
     let screenScale = null;
     let screenPosition = [-1, -9, -45];
     let rotation = [0.1, 4.7, 0];
 
-    if (window.innerWidth < 768) {
+    if (innerWidth < 768) {
       screenScale = [0.9, 0.9, 0.9];
     } else {
       screenScale = [1, 1, 1];
@@ -31,7 +33,7 @@ const Home = () => {
     let screenScale,
       screenPosition = null;
 
-    if (window.innerWidth < 768) {
+    if (innerWidth < 768) {
       screenScale = [1.5, 1.5, 1.5];
       screenPosition = [0, -1.5, 0];
     } else {
