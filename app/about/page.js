@@ -57,11 +57,11 @@ const Page = () => {
           <div key={index} className="mt-10 w-full flex flex-col gap-2">
             <div className="w-full flex flex-col md:flex-row gap-16">
               <Image
-                src={zscaler}
+                src={experience.icon}
                 alt={experience.company_name}
-                width={80}
-                height={80}
-                className="w-[50%] h-[15%] object-contain rounded-[50%] shadow-md"
+                width={256}
+                height={256}
+                className="w-[256px] h-[256px] object-contain rounded-[50%] shadow-xl"
               />
 
               <div className="md:w-[95%] w-[100%]">
