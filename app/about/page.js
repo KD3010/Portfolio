@@ -1,7 +1,7 @@
 import { skills, experiences } from '@/public/constants';
-import { zscaler } from '@/public/icons';
 import Image from 'next/image';
 import CTA from '../components/CTA';
+import { marked } from 'marked';
 
 const Page = () => {
   return (
@@ -12,15 +12,15 @@ const Page = () => {
 
       <div className="mt-5 flex flex-col gap-3 text-slate-500">
         <p>
-          a passionate full-stack developer with over two years of experience in crafting
-          responsive, user-centric web applications. My expertise lies in using React for front-end
-          development and Node.js for the back end, ensuring robust and scalable solutions. I thrive
-          on understanding and translating client visions into functional web experiences. My focus
-          is on effective communication and building strong client relationships. Whether working
-          with startups or established businesses, my goal is to deliver high-quality projects on
-          time and within budget. As a freelancer, I blend technical skill with a collaborative
-          approach, committed to bringing your web development projects to life with professionalism
-          and creativity.
+        I am a passionate <b>Full Stack Developer</b> with hands-on experience in building scalable, user-centric applications using modern technologies like <b>React, Next.js, Node.js, and Redux</b>. My expertise lies in developing robust microservices architectures and leveraging tools like <b>Kafka, Prisma, and Docker</b> to create reliable, high-performance systems.<br/>
+
+At Zscaler, I contributed to their AI-driven <b>data security platform (DSPM)</b> by designing and maintaining <b>scalable UI components</b> using <b>React and optimizing state management</b> to improve load times by <b>30%</b>. I also led key discussions with Product Managers and backend teams, resulting in a <b>30% improvement in API performance</b>.<br/><br/>
+
+Beyond my professional work, I’ve developed impactful projects like ZapMate, a workflow automation platform inspired by Zapier, where I designed a <b>microservices-based architecture</b> using <b>Kafka and Postgres</b>. Another notable project is an Issue Tracker, enabling efficient task management with a highly responsive UI built using <b>Next.js</b>.<br/>
+
+I thrive in collaborative environments, bringing <b>Agile practices and cross-functional teamwork</b> to deliver projects that exceed expectations. My problem-solving mindset and commitment to continuous learning drive me to explore new technologies and deliver innovative solutions.
+
+I’m eager to contribute my skills and expertise to ambitious teams, creating meaningful products that make a lasting impact.
         </p>
       </div>
 
@@ -28,17 +28,20 @@ const Page = () => {
         <h3 className="subhead-text">My Skills</h3>
         <div className="mt-16 flex flex-wrap gap-12">
           {skills.map((skill, index) => (
-            <div key={index} className="block-container w-20 h-20">
-              <div className="btn-back rounded-xl" />
-              <div className="btn-front rounded-xl flex justify-center items-center">
-                <Image
-                  src={skill.imageUrl}
-                  alt={skill.name}
-                  className="w-1/2 h-1/2 object-contain"
-                  width={1}
-                  height={1}
-                />
+            <div key={index} className='flex flex-col items-center'>
+              <div className="block-container w-20 h-20">
+                <div className="btn-back rounded-xl" />
+                <div className="btn-front rounded-xl flex justify-center items-center">
+                  <Image
+                    src={skill.imageUrl}
+                    alt={skill.name}
+                    className="w-1/2 h-1/2 object-contain"
+                    width={1}
+                    height={1}
+                  />
+                </div>
               </div>
+              <p>{skill.name}</p>
             </div>
           ))}
         </div>
@@ -70,7 +73,7 @@ const Page = () => {
                 <ul className="list-disc mt-5">
                   {experience.points.map((point, index) => (
                     <li key={index}>
-                      <p className="text-slate-800">{point}</p>
+                      <p className="text-slate-800" dangerouslySetInnerHTML={{__html: marked(point)}}></p>
                     </li>
                   ))}
                 </ul>

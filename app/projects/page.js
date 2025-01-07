@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { arrow } from '@/public/icons/index';
 import CTA from '../components/CTA';
+import { marked } from 'marked';
 
 const page = () => {
   return (
@@ -12,7 +13,7 @@ const page = () => {
       </h1>
       <div className="flex flex-wrap my-20 gap-16">
         {projects.map((project) => (
-          <div className="lg:w-[400px] w-full" key={project.name}>
+          <div className="w-full" key={project.name}>
             <div className="block-container w-12 h-12">
               <div className={`btn-back rounded-xl ${project.theme}`} />
               <div className="btn-front rounded-xl flex justify-center items-center">
@@ -25,16 +26,16 @@ const page = () => {
             </div>
 
             <div className="mt-5 flex flex-col ">
-              <h4 className="font-semibold">{project.name}</h4>
-              <p>{project.description}</p>
+              <h4 className="font-bold text-xl mb-1">{project.name}</h4>
+              <p dangerouslySetInnerHTML={{__html: marked(project.description)}}></p>
               <div>
                 <Link
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-semibold text-blue-600 flex flex-nowrap items-center gap-2"
+                  className="font-semibold text-blue-600 flex flex-nowrap items-center gap-2 mt-2"
                 >
-                  Live Link
+                  Link
                   <Image
                     src={arrow}
                     alt="arrow"

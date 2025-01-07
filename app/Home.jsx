@@ -1,91 +1,22 @@
 'use client';
-import { useWindowSize } from '@react-hook/window-size';
-import { Canvas } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
-import Loader from './components/Loader';
-import Island from './models/Island';
-import Sky from './models/Sky';
-import Plane from './models/Plane';
-import HomeInfo from './components/HomeInfo';
-import Grab from '@/public/icons/grab.png';
+import profile from '@/public/images/profile.png';
+import Link from 'next/link';
 import Image from 'next/image';
 
 const Home = () => {
-  const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(1);
-  const { innerWidth } = useWindowSize();
-
-  const adjustIslandForScreenSize = () => {
-    let screenScale = null;
-    let screenPosition = [-1, -9, -45];
-    let rotation = [0.1, 4.7, 0];
-
-    if (innerWidth < 768) {
-      screenScale = [0.9, 0.9, 0.9];
-    } else {
-      screenScale = [1, 1, 1];
-    }
-
-    return [screenScale, screenPosition, rotation];
-  };
-
-  const adjustplaneForScreenSize = () => {
-    let screenScale,
-      screenPosition = null;
-
-    if (innerWidth < 768) {
-      screenScale = [1.5, 1.5, 1.5];
-      screenPosition = [0, -1.5, 0];
-    } else {
-      screenScale = [3, 3, 3];
-      screenPosition = [0, -4, -4];
-    }
-
-    return [screenScale, screenPosition];
-  };
-
-  const [islandScale, islandPosition, islandRotation] = adjustIslandForScreenSize();
-  const [planeScale, planePosition] = adjustplaneForScreenSize();
-
   return (
     <>
-      <div className="absolute top-28 left-0 right-0 z-10 flex items-center justify-center">
-        {currentStage && <HomeInfo currentStage={currentStage} />}
-      </div>
-      <Canvas
-        className={`w-full h-screen bg-transparent ${
-          isRotating ? 'cursor-grabbing' : 'cursor-grab'
-        }`}
-        camera={{ near: 0.1, far: 1000 }}
-      >
-        <Suspense fallback={<Loader />}>
-          <directionalLight position={[1, 1, 1]} intensity={2} />
-          <ambientLight intensity={0.5} />
-          <hemisphereLight skyColor="#b1e1ff" groundColor="#000000" intensity={1} />
-
-          <Sky isRotating={isRotating} />
-          <Island
-            position={islandPosition}
-            scale={islandScale}
-            rotation={islandRotation}
-            isRotating={isRotating}
-            setIsRotating={setIsRotating}
-            setCurrentStage={setCurrentStage}
-          />
-
-          <Plane
-            isRotating={isRotating}
-            scale={planeScale}
-            position={planePosition}
-            rotation={[0, 20.5, 0]}
-          />
-        </Suspense>
-      </Canvas>
-      <div className="absolute bottom-2 left-0 right-0 z-10 flex flex-col items-center justify-center">
-        <p className="animate-slide">
-          <Image src={Grab} width={24} height={24} />
-        </p>
-        <p className="font-semibold">Drag to explore!</p>
+      <div className='w-full absolute top-[10%] flex flex-col items-center'>
+        <Image src={profile} width={300} />
+        <div className='flex flex-col items-center -mt-10'>
+          <h1 className='blue-gradient_text font-bold text-3xl drop-shadow'>Hi, I am Kushagra Devda</h1>
+          <h3 className='font-semibold'>Full Stack Developer | Problem Solver | Technology Enthusiast</h3>
+          <p className='w-[55rem] text-center mt-1'>Welcome to my portfolio! I specialize in building scalable, user-centric applications using modern technologies like <b className="font-semibold">React, Next.js, Node.js, and Redux</b>. With a passion for <b className='font-semibold'>solving complex problems and creating seamless digital experiences</b>, I thrive at the intersection of frontend creativity and backend engineering.</p>
+          <p className='w-[40rem] text-center mt-1'>I’m always looking for exciting opportunities to work on challenging projects, learn new technologies, and make a positive impact. Explore my work, and let’s connect to discuss how I can bring value to your team!</p>
+          <Link href="/contact" className="btn mt-4">
+            Contact
+          </Link>
+        </div>
       </div>
     </>
   );

@@ -26,8 +26,20 @@ import arrow from './arrow.svg';
 import contact from './contact.svg';
 import soundon from './soundon.png';
 import soundoff from './soundoff.png';
+import jira from "./jira.svg";
+import aws from "./aws.svg";
+import docker from "./docker.svg";
+import kafka from "./kafka.svg";
+import postgres from "./postgres.svg";
+import redis from "./redis.svg";
 
 export {
+  jira,
+  aws,
+  docker,
+  kafka,
+  postgres,
+  redis,
   css,
   express,
   git,
