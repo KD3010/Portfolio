@@ -6,6 +6,9 @@ import Fox from '../models/Fox';
 import Loader from '../components/Loader';
 import UseAlert from '../hooks/useAlert';
 import Alert from '../components/Alert';
+import { socialLinks } from '@/public/constants';
+import Image from 'next/image';
+import Link from 'next/link';
 
 const page = () => {
   const formRef = UseRef(null);
@@ -70,7 +73,7 @@ const page = () => {
 
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in touch</h1>
-        <form className="w-full flex flex-col gap-7 mt-14" onSubmit={handleSubmit} ref={formRef}>
+        <form className="w-full flex flex-col gap-7 mt-4 border-b border-gray-500 pb-4" onSubmit={handleSubmit} ref={formRef}>
           <label className="text-black-500 font-semibold">
             Name
             <input
@@ -114,6 +117,13 @@ const page = () => {
             {isLoading ? 'Sending...' : 'Send Message'}
           </button>
         </form>
+
+        <div className='flex mt-4 gap-2'>
+          {socialLinks.map((social, ind) => <Link key={ind} target='_blank' href={social.link} className='px-2 py-1 border-2 border-gray-400 basis-1/2 rounded-md flex justify-center gap-2'>
+            <Image src={social.iconUrl} width={24} />
+            <p>{social.name}</p>
+          </Link>)}
+        </div>
       </div>
 
       <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px] lg:ml-48">
